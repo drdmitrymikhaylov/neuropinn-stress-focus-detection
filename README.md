@@ -92,7 +92,7 @@ and 10 who counted poorly.
 | Degradation (per minute) | −0.12 ± 0.40 | +0.05 ± 0.45 | −0.41 | 0.99 |
 
 Every difference points the way the claim predicts. **Not one of them is
-significant.** On the four-channel headband montage the fluctuation difference
+significant.** On the four-channel occipital montage the fluctuation difference
 is larger (d = −0.49) and still not significant.
 
 Recovery cannot be tested here at all: this dataset has no recording after the
@@ -112,7 +112,7 @@ That gives the number a study design actually needs:
 Ten poor performers is what this dataset offers. The gap between 10 and 95 is
 the whole distance between an interesting observation and a result.
 
-## 3. What a four-channel headband costs
+## 3. What a wearable montage costs
 
 Wearable EEG puts electrodes where a headband or a pair of headphones can
 comfortably sit, not where the signal is. The open dataset carries the full
@@ -125,12 +125,12 @@ channels and once with only the positions each device actually has.
 | Montage | Channels | AUC | Share of the usable margin |
 |---|---|---|---|
 | Research, full 10–20 | 19 | **0.770** | 100 % |
-| Headphones: T5, T6, A2 | 3 | 0.707 | **77 %** |
-| Headband: O1, O2, T3, T4 | 4 | 0.676 | **65 %** |
+| Around the ear: T5, T6, A2 | 3 | 0.707 | **77 %** |
+| Occipital band: O1, O2, T3, T4 | 4 | 0.676 | **65 %** |
 
 Two thirds of the discriminative margin survives on four dry channels. That is
 better than the hardware deserves and worse than the marketing implies, and it
-is the number to quote when someone asks what the headband can do.
+is the number to quote when someone asks what a head-worn device can do.
 
 Note the ordering: three temporal channels beat four occipital-plus-temporal
 ones on this task. Position matters more than count.
