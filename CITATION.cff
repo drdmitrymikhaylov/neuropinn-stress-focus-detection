@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+type: software
+title: "neuropinn-stress-focus-detection"
+authors:
+  - family-names: Mikhaylov
+    given-names: Dmitry
+    orcid: "https://orcid.org/0009-0009-2108-6820"
+repository-code: "https://github.com/drdmitrymikhaylov/neuropinn-stress-focus-detection"
+license: "CC-BY-4.0"
+year: 2026

@@ -22,7 +22,7 @@
 
 ---
 
-## Why this exists
+## Why EEG
 
 Consumer EEG headsets are now used on athletes, drivers, operators and trainee
 captains, and they report focus and stress as numbers on a screen. Two problems
@@ -37,10 +37,12 @@ tells you when it cannot measure; a display always shows something.
 The second is that athletes move. Dry electrodes sit over the temporalis
 muscle, and a clenched jaw produces broadband electrical activity that is
 larger than the brain signal underneath it. Whether that matters depends
-entirely on which index you compute — and that is a question with a number
-attached, which this repository puts on the record.
+entirely on which index you compute. That is a question with a number
+attached, and this repository puts it on the record.
 
-## 1. A gate that refuses to answer
+## Results
+
+### A gate that refuses to answer
 
 Seven checks, each with a physical reason, run per channel per four-second
 epoch. A channel that fails any of them contributes nothing to any downstream
@@ -57,9 +59,9 @@ operating point rather than a tuned one.
 | Clean research-grade data wrongly rejected | 1.8 % |
 
 The first version of this gate caught muscle contamination less than a third of
-the time. Two checks were added because of that — a high-frequency ratio and a
-kurtosis test — and the result is the right-hand panel above, which is the
-finding worth taking away:
+the time. Two checks were added because of that, a high-frequency ratio and a
+kurtosis test. The result is the right-hand panel above, and it is the finding
+worth taking away:
 
 | Muscle contamination | Caught | Error left in theta/alpha | Error left in a beta-based index |
 |---|---|---|---|
@@ -75,12 +77,12 @@ it. Most consumer focus metrics are built on beta.
 So the practical rule this produces is not "filter harder". It is: **on a
 moving subject, do not compute focus from beta.**
 
-## 2. Stability, not peak — tested rather than asserted
+### Stability, not peak
 
 The interesting claim about elite performers is not that they reach higher
 peaks of concentration. It is that their attention **fluctuates less, degrades
-slower and recovers faster**. That is three measurable quantities, and this
-dataset can test two of them: the cohort splits into 26 people who counted well
+slower and recovers faster**. Those are three measurable quantities, and this
+dataset can test two of them. The cohort splits into 26 people who counted well
 and 10 who counted poorly.
 
 ![Stability](figures/02_stability.png)
@@ -95,9 +97,9 @@ Every difference points the way the claim predicts. **Not one of them is
 significant.** On the four-channel occipital montage the fluctuation difference
 is larger (d = −0.49) and still not significant.
 
-Recovery cannot be tested here at all: this dataset has no recording after the
-task. The estimator is implemented and left unused rather than filled in with
-something that looks like an answer.
+Recovery cannot be tested here at all, because this dataset has no recording
+after the task. The estimator is implemented and left unused rather than
+filled in with something that looks like an answer.
 
 ![Power](figures/04_power.png)
 
@@ -112,11 +114,11 @@ That gives the number a study design actually needs:
 Ten poor performers is what this dataset offers. The gap between 10 and 95 is
 the whole distance between an interesting observation and a result.
 
-## 3. What a wearable montage costs
+## Montages
 
 Wearable EEG puts electrodes where a headband or a pair of headphones can
 comfortably sit, not where the signal is. The open dataset carries the full
-10–20 montage, so the cost can be measured directly: classify rest against
+10-20 montage, so the cost can be measured directly. Classify rest against
 mental arithmetic per four-second epoch, split by subject, once with all
 channels and once with only the positions each device actually has.
 
@@ -124,7 +126,7 @@ channels and once with only the positions each device actually has.
 
 | Montage | Channels | AUC | Share of the usable margin |
 |---|---|---|---|
-| Research, full 10–20 | 19 | **0.770** | 100 % |
+| Research, full 10-20 | 19 | **0.770** | 100 % |
 | Around the ear: T5, T6, A2 | 3 | 0.707 | **77 %** |
 | Occipital band: O1, O2, T3, T4 | 4 | 0.676 | **65 %** |
 
@@ -132,19 +134,44 @@ Two thirds of the discriminative margin survives on four dry channels. That is
 better than the hardware deserves and worse than the marketing implies, and it
 is the number to quote when someone asks what a head-worn device can do.
 
-Note the ordering: three temporal channels beat four occipital-plus-temporal
+Note the ordering. Three temporal channels beat four occipital-plus-temporal
 ones on this task. Position matters more than count.
 
-## What this repository does not claim
+## What is missing
 
-- That any of it has been validated on athletes. It has not. The dataset is
-  seated adults doing arithmetic.
-- That the stability hypothesis is supported. It is not, at this sample size —
-  only that the direction is consistent and the required sample is now known.
-- That the gate makes a consumer headset equivalent to a research amplifier.
-  It makes it *honest*, which is a different and smaller claim.
+- Validation on athletes. There is none. The dataset is seated adults doing
+  arithmetic.
+- Support for the stability hypothesis. It is not supported at this sample
+  size — only the direction is consistent, and the required sample is now
+  known.
+- Equivalence between a gated consumer headset and a research amplifier. The
+  gate makes the headset *truthful* about when it cannot measure, which is a
+  different and smaller claim.
 
-## Sources
+## Working log
+
+This repository exists because I had made three public claims and had no
+numbers under them. That elite performers fluctuate less, degrade slower and
+recover faster. That EEG can yield biomarkers of cognitive control and
+resilience. And that the meaningful neural patterns can be separated from
+interference caused by movement, muscle tension and surrounding equipment. The
+figures above are what I could put under those claims with open data.
+
+The gate was not right first time. Its first version caught muscle
+contamination less than a third of the time, and the high-frequency ratio and
+kurtosis checks were added because of that.
+
+Recovery after a task has no estimate here. The estimator is written, but the
+dataset has no post-task recording, so it stays unused.
+
+The wearable devices we record with sample at a lower rate than the open
+dataset. The pipeline resamples, but a native-rate check on real device files
+is still to do. Our own athlete recordings are not in this repository and were
+not used for any figure. A benchmark that rests on one participant is a
+reference point, not a scale; the power table says what closing that gap would
+cost.
+
+## References
 
 Zyma, Tukaev, Seleznov et al., *Electroencephalograms during Mental Arithmetic
 Task Performance*, Data 4(1):14 (2019); dataset on PhysioNet as `eegmat` 1.0.0 ·
@@ -153,7 +180,13 @@ Characteristics Obtained with Consumer- and Research-Grade Devices*, Sensors
 24(24):8108 · Pope, Bogart & Bartolome (1995) for the beta-based engagement
 index.
 
-## Contact
+## Licence
+
+Documentation, figures and result files in this repository: CC BY 4.0. Source
+code is held in a private repository, all rights reserved, and is available
+under NDA.
+
+### Contact
 
 **Prof. Dr. Dmitry Mikhaylov** — Abu Dhabi, UAE
 
