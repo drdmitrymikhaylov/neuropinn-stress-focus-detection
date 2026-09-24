@@ -22,6 +22,10 @@
 
 ---
 
+## Backstory
+
+My EEG work started in elite sport, with Khabib Nurmagomedov's team and with Alexander Ovechkin: how does a champion's brain hold up under pressure? Along the way I found something the whole wearables industry had missed. Consumer headbands happily report "focus" from signals that are not brain activity at all. Our 2024 paper in *Sensors* (24(24):8108, doi:10.3390/s24248108) showed that 17 of 19 consumer recordings were non-physiological while the app showed green. This repository is the filter I built to catch that.
+
 ## Why EEG
 
 Consumer EEG headsets are now used on athletes, drivers, operators and trainee
