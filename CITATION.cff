@@ -1,11 +1,20 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
 type: software
-title: "neuropinn-stress-focus-detection"
+title: "NeuroPINN: An EEG Validity Gate for Stress and Focus Scoring"
+abstract: "An EEG validity gate before any stress or focus score"
 authors:
   - family-names: Mikhaylov
     given-names: Dmitry
     orcid: "https://orcid.org/0009-0009-2108-6820"
+    affiliation: "Abu Dhabi Maritime Academy, AD Ports Group"
 repository-code: "https://github.com/drdmitrymikhaylov/neuropinn-stress-focus-detection"
+url: "https://github.com/drdmitrymikhaylov/neuropinn-stress-focus-detection"
 license: "CC-BY-4.0"
-year: 2026
+keywords:
+  - "bci"
+  - "eeg"
+  - "neurotechnology"
+  - "signal quality"
+  - "sports science"
+date-released: "2026-09-07"
