@@ -97,9 +97,11 @@ and 10 who counted poorly.
 | Fluctuation (CV within task) | 0.35 ± 0.15 | 0.39 ± 0.14 | −0.27 | 0.39 |
 | Degradation (per minute) | −0.12 ± 0.40 | +0.05 ± 0.45 | −0.41 | 0.99 |
 
-Every difference points the way the claim predicts. **Not one of them is
-significant.** On the four-channel occipital montage the fluctuation difference
-is larger (d = −0.49) and still not significant.
+Every difference of *means* points the way the claim predicts. **Not one of
+them is significant.** On the four-channel occipital montage the fluctuation
+difference is larger (d = −0.49) and still not significant. Read by medians or
+ranks, two of the three rows point the other way — see "The same table by
+ranks" below.
 
 Recovery cannot be tested here at all, because this dataset has no recording
 after the task. The estimator is implemented and left unused rather than
@@ -117,6 +119,44 @@ That gives the number a study design actually needs:
 
 Ten poor performers is what this dataset offers. The gap between 10 and 95 is
 the whole distance between an interesting observation and a result.
+
+### The same table by ranks
+
+Cohen's *d* is a statement about means. The Mann-Whitney *p* beside it is a
+statement about ranks, and 0.99 on two of the three rows is not "not
+significant" — it is the rank test saying the two groups are interleaved as
+evenly as they could be. Reading the 36 subjects again
+(`results/rank_check.json`, from the per-subject values in
+`results/studies.json`; computed 2026-09-29):
+
+| Metric (full montage) | *d* (means) | 95 % CI on *d* | medians, good vs poor | rank-biserial *r* | Spearman ρ with the score |
+|---|---|---|---|---|---|
+| Load level | −0.18 | −1.11 to +0.61 | 1.81 vs 1.77 | +0.01 | +0.04 (*p* = 0.83) |
+| Fluctuation | −0.27 | −1.16 to +0.38 | 0.31 vs 0.37 | −0.19 | −0.09 (*p* = 0.58) |
+| Degradation | −0.41 | −1.10 to +0.37 | −0.01 vs −0.13 | −0.01 | +0.07 (*p* = 0.68) |
+
+Three things follow. The degradation row, the largest *d* in the table and
+the one the power calculation leans on, has a rank-biserial correlation of
+−0.01: by ranks the groups are indistinguishable, and the poor counters'
+*median* degradation is more negative (they improve faster, not slower). Its
+*d* is carried by the means of a few subjects — leaving out one subject moves
+it from −0.41 to anywhere between −0.50 and −0.18, and the bootstrap interval
+spans −1.1 to +0.4. Level goes the same way (medians 1.81 vs 1.77, against
+the means). Only fluctuation agrees with itself: means, medians and ranks all
+have good counters steadier, and it is the one row that still leans the
+predicted way on the four-channel montage (ρ = −0.16, rank-biserial −0.28).
+
+The good/poor split also throws away the score it is made from: subtractions
+per session run continuously from 1 to 35 and are cut at 10 vs 11.6. Against
+the continuous score the three metrics correlate at |ρ| < 0.10. A study sized
+to detect *those* correlations needs about **1 500 participants** for
+degradation (1 536), 870 for fluctuation and 5 900 for level — not 95 per
+group. The 95 in the power table is the price of the claim if the means are
+believed; the ranks say the price is an order of magnitude higher.
+
+So the honest reading of the stability table is narrower than "every
+difference points the right way": one metric out of three does, weakly, and
+the other two are noise around zero.
 
 ## Montages
 
