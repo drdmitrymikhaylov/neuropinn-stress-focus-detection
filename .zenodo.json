@@ -1,0 +1,21 @@
+{
+  "upload_type": "software",
+  "title": "NeuroPINN: An EEG Validity Gate for Stress and Focus Scoring",
+  "description": "An EEG validity gate before any stress or focus score",
+  "creators": [
+    {
+      "name": "Mikhaylov, Dmitry",
+      "orcid": "0009-0009-2108-6820",
+      "affiliation": "Abu Dhabi Maritime Academy, AD Ports Group"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "keywords": [
+    "bci",
+    "eeg",
+    "neurotechnology",
+    "signal quality",
+    "sports science"
+  ],
+  "access_right": "open"
+}
