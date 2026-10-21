@@ -1,5 +1,7 @@
 # EEG for stress and focus, under conditions that break EEG
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23529569.svg)](https://doi.org/10.5281/zenodo.23529569)
+
 **Before any number about concentration leaves the pipeline, prove the signal was a brain.**
 
 ![Validity gate](figures/01_validity_gate.png)
