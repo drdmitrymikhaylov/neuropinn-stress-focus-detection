@@ -2,6 +2,7 @@ cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
 type: software
 title: "NeuroPINN: An EEG Validity Gate for Stress and Focus Scoring"
+doi: "10.5281/zenodo.23529569"
 abstract: "An EEG validity gate before any stress or focus score"
 authors:
   - family-names: Mikhaylov
