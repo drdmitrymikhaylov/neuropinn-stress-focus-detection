@@ -154,11 +154,107 @@ the continuous score the three metrics correlate at |ρ| < 0.10. A study sized
 to detect *those* correlations needs about **1 500 participants** for
 degradation (1 536), 870 for fluctuation and 5 900 for level — not 95 per
 group. The 95 in the power table is the price of the claim if the means are
-believed; the ranks say the price is an order of magnitude higher.
+believed; the ranks say the price is an order of magnitude higher. (Added
+2026-11-02: both figures are point estimates — the intervals on ρ cover zero
+and both signs, so the price has no finite upper bound; see "Where the cut
+sits" below.)
 
 So the honest reading of the stability table is narrower than "every
 difference points the right way": one metric out of three does, weakly, and
 the other two are noise around zero.
+
+### Where the cut sits
+
+Every number in the two tables above is a property of one choice: the
+continuous score (1 to 35 subtractions in four minutes) was cut at 10 vs
+11.6, 26 good counters against 10 poor. On this cohort the cut can sit in 27
+places that leave at least five subjects on each side with no tie across it.
+Reading the table at every one of them (`results/cut_check.json`, from the
+per-subject values in `results/studies.json`; computed 2026-11-02):
+
+| Metric (full montage) | *d* at the published cut | *d* over the 27 cuts | cuts with *d* < 0 | cuts with rank-biserial < 0 | *d* at the median split (18 vs 18) | smallest *p* at any cut |
+|---|---|---|---|---|---|---|
+| Load level | −0.18 | −0.23 to +0.56 | 74 % | 41 % | −0.07 | 0.204 |
+| Fluctuation | −0.27 | −0.55 to +0.18 | 74 % | 70 % | +0.05 | 0.094 |
+| Degradation | −0.41 | −0.65 to +0.36 | 56 % | 37 % | −0.05 | 0.168 |
+
+No cut makes any row significant; the smallest *p* the sweep can find is
+0.094 (fluctuation, with 30 poor against 6 good). The degradation row, the
+one the power table leans on, is negative at 15 of 27 cuts and its
+rank-biserial at 10 of 27. Its *d* runs from −0.65 (7 poor, cut between 8.6
+and 9.0) to +0.36, and the sign follows the half of the score the cut sits
+in: it is negative at 15 of the 16 cuts that put 20 or fewer subjects in the
+poor group (+0.004 at the sixteenth) and positive at all 11 cuts above that —
+among the better counters, the better ones degrade *more*. The published
+−0.41 is neither the largest nor the smallest value the data can give; it is
+where the cut happened to fall. At the median split all three rows sit
+within ±0.07 of zero.
+
+On the four-channel montage, fluctuation is the one row that does not
+depend on the cut: *d* is negative at all 27 cuts (−0.71 to −0.01),
+rank-biserial at 26 of them, −0.19 at the median split — and never
+significant (smallest *p* 0.122). Level and degradation there behave as on
+the full montage (78 % and 52 % of cuts negative).
+
+**The sample sizes are point estimates.** The "1 536 / 870 / 5 900
+participants" above were computed from the Spearman ρ of each metric with
+the continuous score. Bootstrapped over subjects (5 000 resamples):
+
+| Metric (full montage) | ρ with the score | 95 % CI on ρ | resamples with ρ < 0 | participants at the point estimate | participants at the far edge of the CI |
+|---|---|---|---|---|---|
+| Load level | +0.04 | −0.33 to +0.40 | 42 % | 5 872 | 47 |
+| Fluctuation | −0.09 | −0.43 to +0.26 | 69 % | 870 | 40 |
+| Degradation | +0.07 | −0.25 to +0.39 | 34 % | 1 536 | 49 |
+
+Every interval covers zero and both signs. The sample a study "needs"
+therefore runs from about 40–50 participants (if the true ρ sits at the edge
+of the interval) to no finite number (if it is zero): the 1 536 illustrates
+the price of the claim, it does not estimate it. The same holds for the *d*
+intervals in the previous section — the degradation interval −1.1 to +0.4
+reads as 14 per group to no finite number, and the 95 in the power table is
+the same kind of illustration.
+
+**Three location estimates per row** (good − poor; the difference of means
+is what *d* is built on):
+
+| Metric (full montage) | difference of means | Hodges–Lehmann (median of pairwise differences) | 20 %-trimmed means |
+|---|---|---|---|
+| Load level | −0.182 | +0.005 | −0.084 |
+| Fluctuation | −0.040 | −0.041 | −0.060 |
+| Degradation | −0.168 | −0.016 | +0.059 |
+
+Degradation changes sign once the tails are trimmed: the whole row lives in
+the tails. Fluctuation is the only row where the three agree, on both
+montages (headband −0.074 / −0.064 / −0.080); on the headband, level and
+degradation both flip (+0.162 / +0.285 and +0.042 / +0.098 against negative
+means).
+
+**Three rows pointing one way.** "Every difference of means points the way
+the claim predicts" — how often does that happen with no effect at all? The
+good/poor labels were permuted 20 000 times with the three metrics kept
+together, so their correlations survive (level–fluctuation *r* = +0.30, the
+other pairs |*r*| < 0.10). All three *d* come out negative in **14.0 % of
+permutations** — one time in seven. All three at least as negative as the
+observed values: 1.6 %. That is the one small number this table yields, and
+it is one-sided, chosen after seeing the data, computed on a dichotomised
+score, with two rows whose ranks and trimmed means point the other way. Both
+figures are reported; neither is a *p*-value for the claim. (Headband:
+12.6 % and 1.4 %.)
+
+**The four-channel montage, by ranks** — the rows `rank_check.json` has held
+since 2026-09-29 and the page did not show:
+
+| Metric (4-channel) | *d* (means) | 95 % CI on *d* | medians, good vs poor | rank-biserial *r* | Spearman ρ with the score | participants at ρ | per group at *d* |
+|---|---|---|---|---|---|---|---|
+| Load level | −0.06 | −0.94 to +0.91 | 2.02 vs 1.70 | +0.12 | +0.01 (*p* = 0.96) | 99 502 | 4 596 |
+| Fluctuation | −0.49 | −1.45 to +0.22 | 0.36 vs 0.42 | −0.28 | −0.16 (*p* = 0.36) | 311 | 66 |
+| Degradation | −0.25 | −1.05 to +0.70 | −0.10 vs −0.22 | +0.06 | +0.10 (*p* = 0.58) | 859 | 246 |
+
+What this does not show: it is one dataset of 36 seated adults, and the 27
+cuts share those subjects, so "74 % of cuts" describes this sample, not a
+probability. The bootstrap on 36 subjects is itself a wide instrument. The
+1.6 % is one-sided and post hoc. Nothing here says whether the three metrics
+measure attention at all, or anything about athletes.
 
 ## Montages
 
@@ -188,8 +284,13 @@ ones on this task. Position matters more than count.
 - Validation on athletes. There is none. The dataset is seated adults doing
   arithmetic.
 - Support for the stability hypothesis. It is not supported at this sample
-  size — only the direction is consistent, and the required sample is now
-  known.
+  size. The direction of the three mean differences is consistent at the
+  published 10-vs-11.6 cut and at about half of the other admissible cuts
+  (degradation: 15 of 27; fluctuation on the four-channel montage is the one
+  row consistent at every cut), and the required sample is a point estimate
+  with no finite upper bound — see "Where the cut sits". (Until 2026-11-02
+  this bullet read "only the direction is consistent, and the required
+  sample is now known".)
 - Equivalence between a gated consumer headset and a research amplifier. The
   gate makes the headset *truthful* about when it cannot measure, which is a
   different and smaller claim.
